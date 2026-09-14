@@ -1,0 +1,5 @@
+.scan/
+node_modules/
+storage/
+*.db
+.env

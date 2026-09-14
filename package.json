@@ -1,0 +1,30 @@
+{
+  "name": "docvault",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "better-sqlite3": "13.0.3",
+    "express": "5.2.1",
+    "express-rate-limit": "8.7.0",
+    "jsonwebtoken": "9.0.3",
+    "lodash": "4.17.20",
+    "marked": "4.0.9",
+    "minimist": "1.2.5"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "*",
+    "@types/express": "*",
+    "@types/jsonwebtoken": "*",
+    "@types/node": "*",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  },
+  "overrides": {
+    "qs": "6.10.1"
+  }
+}
