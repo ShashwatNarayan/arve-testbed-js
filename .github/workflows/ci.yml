@@ -1,0 +1,19 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - run: npm ci --ignore-scripts
+      - run: npx tsc --noEmit
+      - name: Publish release notes
+        env:
+          # TESTBED SEC-04
+          GH_TOKEN: ghp_o0vYEDgeiDyhK2pL7QAbm7TrpczT2SNAn1uh
+        run: gh release view --repo "$GITHUB_REPOSITORY" || true
