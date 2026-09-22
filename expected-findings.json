@@ -1,0 +1,438 @@
+{
+  "schema_version": "2.0",
+  "repository": "arve-testbed-js",
+  "language": "javascript-typescript",
+  "description": "Ground truth for evaluating ARVE. Every positive finding was planted deliberately; every negative control must produce no finding.",
+  "advisory_data_verified": "2026-10-04",
+  "scanners": {
+    "gitleaks": "ghcr.io/gitleaks/gitleaks:v8.24.2",
+    "osv": "ghcr.io/google/osv-scanner:v1.9.2",
+    "semgrep": "semgrep/semgrep:1.90.0 + ARVE rulepack 2026.09.1",
+    "codeql": "arve-codeql:2.27.1 (security-extended)"
+  },
+  "engine_expectations": {
+    "gitleaks": "run",
+    "osv": "run",
+    "semgrep": "run",
+    "codeql": "run"
+  },
+  "all_credentials_synthetic": true,
+  "expected_counts": {
+    "gitleaks": 5,
+    "gitleaks_history": 6,
+    "osv": 12,
+    "semgrep": 6,
+    "codeql": 8
+  },
+  "expected_counts_note": "Working-tree counts, not plant counts: SAST-02 yields 3 CodeQL findings, and the 4 DEP plants yield 12 OSV records. gitleaks_history = the 5 HEAD secrets, each reported at the commit that added it, plus SEC-05.",
+  "findings": [
+    {
+      "id": "SAST-01",
+      "kind": "positive",
+      "finding_type": "sast",
+      "expected_engines": [
+        "codeql"
+      ],
+      "rule_ids": {
+        "codeql": "js/sql-injection"
+      },
+      "semgrep_profile": null,
+      "cwe": "CWE-89",
+      "file_path": "src/routes/search.ts",
+      "line_start": 12,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "Template-literal SQL from req.query, passed to better-sqlite3 prepare(). This is an ARVE rulepack gap: arve.javascript.sql-injection only matches $DB.query(...), and better-sqlite3 has no .query, so this is CodeQL-only. Semgrep silence here is expected and is the finding."
+    },
+    {
+      "id": "SAST-02",
+      "kind": "positive",
+      "finding_type": "sast",
+      "expected_engines": [
+        "semgrep",
+        "codeql"
+      ],
+      "rule_ids": {
+        "semgrep": "arve.javascript.command-injection",
+        "codeql": [
+          "js/command-line-injection",
+          "js/shell-command-injection-from-environment",
+          "js/indirect-command-line-injection"
+        ]
+      },
+      "semgrep_profile": "standard",
+      "cwe": "CWE-78",
+      "file_path": "src/routes/convert.ts",
+      "line_start": 26,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "Bare exec() (imported from node:child_process) with a template literal holding req.query.format. Lives in .ts. CodeQL reports 3 queries on this line: the request source, plus two for the outDir/src paths, which derive from process.env.DOCVAULT_STORAGE."
+    },
+    {
+      "id": "SAST-03",
+      "kind": "positive",
+      "finding_type": "sast",
+      "expected_engines": [
+        "semgrep",
+        "codeql"
+      ],
+      "rule_ids": {
+        "semgrep": "arve.javascript.xss",
+        "codeql": "js/reflected-xss"
+      },
+      "semgrep_profile": "standard",
+      "cwe": "CWE-79",
+      "file_path": "src/routes/docs.ts",
+      "line_start": 58,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "res.send of a template literal holding req.query.highlight. Lives in .ts."
+    },
+    {
+      "id": "SAST-04",
+      "kind": "positive",
+      "finding_type": "sast",
+      "expected_engines": [
+        "semgrep"
+      ],
+      "rule_ids": {
+        "semgrep": "arve.javascript.xss"
+      },
+      "semgrep_profile": "standard",
+      "cwe": "CWE-79",
+      "file_path": "public/app.js",
+      "line_start": 15,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "innerHTML from a fetch() response in the static .js page. CodeQL does not treat a fetch response as a DOM-XSS source, so this is Semgrep-only."
+    },
+    {
+      "id": "SAST-05",
+      "kind": "positive",
+      "finding_type": "sast",
+      "expected_engines": [
+        "semgrep",
+        "codeql"
+      ],
+      "rule_ids": {
+        "semgrep": "arve.upstream.javascript.eval-injection",
+        "codeql": "js/code-injection"
+      },
+      "semgrep_profile": "standard",
+      "cwe": "CWE-94",
+      "file_path": "src/routes/settings.ts",
+      "line_start": 11,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "eval of the settings bundle request body. Lives in .ts."
+    },
+    {
+      "id": "SAST-06",
+      "kind": "positive",
+      "finding_type": "sast",
+      "expected_engines": [
+        "codeql"
+      ],
+      "rule_ids": {
+        "codeql": "js/path-injection"
+      },
+      "semgrep_profile": null,
+      "cwe": "CWE-22",
+      "file_path": "src/routes/docs.ts",
+      "line_start": 41,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "fs.readFile(path.join(dir, name)) with name from req.query. ARVE has no JS path-traversal rule, so this is CodeQL-only."
+    },
+    {
+      "id": "SAST-07",
+      "kind": "positive",
+      "finding_type": "sast",
+      "expected_engines": [
+        "codeql"
+      ],
+      "rule_ids": {
+        "codeql": "js/request-forgery"
+      },
+      "semgrep_profile": null,
+      "cwe": "CWE-918",
+      "file_path": "src/routes/fetch.ts",
+      "line_start": 18,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "Global fetch() on a URL from the JSON body. ARVE has no JS SSRF rule, so this is CodeQL-only."
+    },
+    {
+      "id": "SEC-01",
+      "kind": "positive",
+      "finding_type": "secret",
+      "expected_engines": [
+        "gitleaks",
+        "semgrep"
+      ],
+      "rule_ids": {
+        "gitleaks": "generic-api-key",
+        "semgrep": "arve.generic.hardcoded-jwt-secret"
+      },
+      "semgrep_profile": "standard",
+      "cwe": "CWE-798",
+      "file_path": "src/share.ts",
+      "line_start": 7,
+      "line_span": 2,
+      "cross_engine_group": "C-01",
+      "history_only": false,
+      "notes": "JWT signing key bound to a const, then passed to jwt.sign on the next line (line_span 2). Gitleaks reports the assignment and Semgrep the call, via constant propagation. Lives in .ts."
+    },
+    {
+      "id": "SEC-02",
+      "kind": "positive",
+      "finding_type": "secret",
+      "expected_engines": [
+        "gitleaks",
+        "semgrep"
+      ],
+      "rule_ids": {
+        "gitleaks": "private-key",
+        "semgrep": "arve.upstream.generic.private-key"
+      },
+      "semgrep_profile": "standard",
+      "cwe": "CWE-321",
+      "file_path": "config/export-key.js",
+      "line_start": 3,
+      "line_span": 1,
+      "cross_engine_group": "C-02",
+      "history_only": false,
+      "notes": "RSA private key embedded as a template literal in a .js module (openssl-generated). Both engines report the BEGIN line."
+    },
+    {
+      "id": "SEC-03",
+      "kind": "positive",
+      "finding_type": "secret",
+      "expected_engines": [
+        "gitleaks"
+      ],
+      "rule_ids": {
+        "gitleaks": "stripe-access-token"
+      },
+      "semgrep_profile": null,
+      "cwe": "CWE-798",
+      "file_path": ".env.example",
+      "line_start": 5,
+      "line_span": 1,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "Stripe secret key in .env.example."
+    },
+    {
+      "id": "SEC-04",
+      "kind": "positive",
+      "finding_type": "secret",
+      "expected_engines": [
+        "gitleaks"
+      ],
+      "rule_ids": {
+        "gitleaks": "github-pat"
+      },
+      "semgrep_profile": null,
+      "cwe": "CWE-798",
+      "file_path": ".github/workflows/ci.yml",
+      "line_start": 18,
+      "line_span": 1,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "GitHub personal access token in a workflow step's env."
+    },
+    {
+      "id": "SEC-05",
+      "kind": "positive",
+      "finding_type": "secret",
+      "expected_engines": [
+        "gitleaks"
+      ],
+      "rule_ids": {
+        "gitleaks": "generic-api-key"
+      },
+      "semgrep_profile": null,
+      "cwe": "CWE-798",
+      "file_path": "src/notify.ts",
+      "line_start": 2,
+      "cross_engine_group": null,
+      "history_only": true,
+      "history": {
+        "file_path": "src/notify.ts",
+        "line_start": 2,
+        "introduced_in": "Add document conversion with email notification on failure",
+        "removed_in": "Replace email notifications with Slack alerts"
+      },
+      "notes": "SMTP relay token in a module that is added and then deleted two commits later. Only a git-history scan finds it. Built by scripts/seed_history.py, which derives the value from a seed so it never appears at HEAD."
+    },
+    {
+      "id": "SEC-06",
+      "kind": "positive",
+      "finding_type": "secret",
+      "expected_engines": [
+        "gitleaks"
+      ],
+      "rule_ids": {
+        "gitleaks": "slack-webhook-url"
+      },
+      "semgrep_profile": null,
+      "cwe": "CWE-798",
+      "file_path": "docs/runbook.md",
+      "line_start": 18,
+      "line_span": 1,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "Slack incoming webhook in an ops runbook (a non-code location)."
+    },
+    {
+      "id": "DEP-01",
+      "kind": "positive",
+      "finding_type": "dependency",
+      "expected_engines": [
+        "osv"
+      ],
+      "rule_ids": {
+        "osv": [
+          "GHSA-29mw-wpgm-hmr9",
+          "GHSA-35jh-r3h4-6jhm",
+          "GHSA-f23m-r3pf-42rh",
+          "GHSA-r5fr-rjxr-66jc",
+          "GHSA-xxjr-mmjv-4gpg"
+        ]
+      },
+      "semgrep_profile": null,
+      "cwe": null,
+      "file_path": "package-lock.json",
+      "locator": "\"node_modules/lodash\":",
+      "line_start": 1570,
+      "cross_engine_group": null,
+      "history_only": false,
+      "package": "lodash",
+      "version": "4.17.20",
+      "ecosystem": "npm",
+      "notes": "5 OSV records reported by osv-scanner 1.9.2; each verified in range on osv.dev, 2026-10-04. Direct dependency."
+    },
+    {
+      "id": "DEP-02",
+      "kind": "positive",
+      "finding_type": "dependency",
+      "expected_engines": [
+        "osv"
+      ],
+      "rule_ids": {
+        "osv": [
+          "GHSA-xvch-5gv4-984h"
+        ]
+      },
+      "semgrep_profile": null,
+      "cwe": null,
+      "file_path": "package-lock.json",
+      "locator": "\"node_modules/minimist\":",
+      "line_start": 1689,
+      "cross_engine_group": null,
+      "history_only": false,
+      "package": "minimist",
+      "version": "1.2.5",
+      "ecosystem": "npm",
+      "notes": "1 OSV records reported by osv-scanner 1.9.2; each verified in range on osv.dev, 2026-10-04. Direct dependency."
+    },
+    {
+      "id": "DEP-03",
+      "kind": "positive",
+      "finding_type": "dependency",
+      "expected_engines": [
+        "osv"
+      ],
+      "rule_ids": {
+        "osv": [
+          "GHSA-5v2h-r2cx-5xgj",
+          "GHSA-rrrm-qjm4-v8hf"
+        ]
+      },
+      "semgrep_profile": null,
+      "cwe": null,
+      "file_path": "package-lock.json",
+      "locator": "\"node_modules/marked\":",
+      "line_start": 1618,
+      "cross_engine_group": null,
+      "history_only": false,
+      "package": "marked",
+      "version": "4.0.9",
+      "ecosystem": "npm",
+      "notes": "2 OSV records reported by osv-scanner 1.9.2; each verified in range on osv.dev, 2026-10-04. Direct dependency."
+    },
+    {
+      "id": "DEP-04",
+      "kind": "positive",
+      "finding_type": "dependency",
+      "expected_engines": [
+        "osv"
+      ],
+      "rule_ids": {
+        "osv": [
+          "GHSA-4mjr-xmp4-gh2g",
+          "GHSA-6rw7-vpxm-498p",
+          "GHSA-hrpp-h998-j3pp",
+          "GHSA-w7fw-mjwx-w883"
+        ]
+      },
+      "semgrep_profile": null,
+      "cwe": null,
+      "file_path": "package-lock.json",
+      "locator": "\"node_modules/body-parser/node_modules/qs\":",
+      "line_start": 998,
+      "cross_engine_group": null,
+      "history_only": false,
+      "package": "qs",
+      "version": "6.10.1",
+      "ecosystem": "npm",
+      "notes": "4 OSV records reported by osv-scanner 1.9.2; each verified in range on osv.dev, 2026-10-04. Transitive-only: not in package.json dependencies; forced under express and body-parser by an npm `overrides` entry. npm nests it twice in the lockfile (express/ and body-parser/node_modules/qs)."
+    },
+    {
+      "id": "SAFE-01",
+      "kind": "negative",
+      "finding_type": "control",
+      "expected_engines": [],
+      "rule_ids": {},
+      "semgrep_profile": null,
+      "cwe": null,
+      "file_path": "src/repository.ts",
+      "line_start": 5,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "Prepared statement with a bound parameter."
+    },
+    {
+      "id": "SAFE-02",
+      "kind": "negative",
+      "finding_type": "control",
+      "expected_engines": [],
+      "rule_ids": {},
+      "semgrep_profile": null,
+      "cwe": null,
+      "file_path": "src/routes/convert.ts",
+      "line_start": 28,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "execFile with an argument array and no shell."
+    },
+    {
+      "id": "SAFE-03",
+      "kind": "negative",
+      "finding_type": "control",
+      "expected_engines": [],
+      "rule_ids": {},
+      "semgrep_profile": null,
+      "cwe": null,
+      "file_path": "public/app.js",
+      "line_start": 13,
+      "cross_engine_group": null,
+      "history_only": false,
+      "notes": "textContent instead of innerHTML."
+    }
+  ],
+  "notes": [
+    "ARVE rulepack gap (Semgrep, JS/TS): arve.javascript.sql-injection only matches $DB.query(...). better-sqlite3, the driver this testbed uses, exposes prepare()/exec() and no .query(), so SQL injection through it is invisible to ARVE's Semgrep layer (see SAST-01)."
+  ]
+}

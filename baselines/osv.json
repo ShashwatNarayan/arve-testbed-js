@@ -1,0 +1,1946 @@
+{
+ "results": [
+  {
+   "source": {
+    "path": "/code/package-lock.json",
+    "type": "lockfile"
+   },
+   "packages": [
+    {
+     "package": {
+      "name": "lodash",
+      "version": "4.17.20",
+      "ecosystem": "npm"
+     },
+     "vulnerabilities": [
+      {
+       "modified": "2025-09-29T21:12:31Z",
+       "published": "2022-01-06T20:30:46Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-29mw-wpgm-hmr9",
+       "aliases": [
+        "CVE-2020-28500"
+       ],
+       "summary": "Regular Expression Denial of Service (ReDoS) in lodash",
+       "details": "All versions of package lodash prior to 4.17.21 are vulnerable to Regular Expression Denial of Service (ReDoS) via the `toNumber`, `trim` and `trimEnd` functions. \n\nSteps to reproduce (provided by reporter Liyuan Chen):\n```js\nvar lo = require('lodash');\n\nfunction build_blank(n) {\n    var ret = \"1\"\n    for (var i = 0; i < n; i++) {\n        ret += \" \"\n    }\n    return ret + \"1\";\n}\nvar s = build_blank(50000) var time0 = Date.now();\nlo.trim(s) \nvar time_cost0 = Date.now() - time0;\nconsole.log(\"time_cost0: \" + time_cost0);\nvar time1 = Date.now();\nlo.toNumber(s) var time_cost1 = Date.now() - time1;\nconsole.log(\"time_cost1: \" + time_cost1);\nvar time2 = Date.now();\nlo.trimEnd(s);\nvar time_cost2 = Date.now() - time2;\nconsole.log(\"time_cost2: \" + time_cost2);\n```",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash",
+          "purl": "pkg:npm/lodash"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "fixed": "4.17.21"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/01/GHSA-29mw-wpgm-hmr9/GHSA-29mw-wpgm-hmr9.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash-es",
+          "purl": "pkg:npm/lodash-es"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "fixed": "4.17.21"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/01/GHSA-29mw-wpgm-hmr9/GHSA-29mw-wpgm-hmr9.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash.trimend",
+          "purl": "pkg:npm/lodash.trimend"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "last_affected": "4.5.1"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/01/GHSA-29mw-wpgm-hmr9/GHSA-29mw-wpgm-hmr9.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash.trim",
+          "purl": "pkg:npm/lodash.trim"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "last_affected": "4.5.1"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/01/GHSA-29mw-wpgm-hmr9/GHSA-29mw-wpgm-hmr9.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "RubyGems",
+          "name": "lodash-rails",
+          "purl": "pkg:gem/lodash-rails"
+         },
+         "ranges": [
+          {
+           "type": "ECOSYSTEM",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "fixed": "4.17.21"
+            }
+           ]
+          }
+         ],
+         "versions": [
+          "4.0.0",
+          "4.11.2",
+          "4.12.0",
+          "4.13.1",
+          "4.14.1",
+          "4.15.0",
+          "4.16.1",
+          "4.16.3",
+          "4.16.4",
+          "4.16.6",
+          "4.17.10",
+          "4.17.11",
+          "4.17.14",
+          "4.17.15",
+          "4.17.2",
+          "4.17.4",
+          "4.17.5",
+          "4.3.0",
+          "4.5.1",
+          "4.6.1"
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/01/GHSA-29mw-wpgm-hmr9/GHSA-29mw-wpgm-hmr9.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        }
+       ],
+       "references": [
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-28500"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/github/advisory-database/pull/6139"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/pull/5065"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/pull/5065/commits/02906b8191d3c100c193fe6f7b27d1c40f200bb7"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/commit/c4847ebe7d14540bb28a8b932a9ce1b9ecbfee1a"
+        },
+        {
+         "type": "WEB",
+         "url": "https://www.oracle.com/security-alerts/cpuoct2021.html"
+        },
+        {
+         "type": "WEB",
+         "url": "https://www.oracle.com/security-alerts/cpujul2022.html"
+        },
+        {
+         "type": "WEB",
+         "url": "https://www.oracle.com/security-alerts/cpujan2022.html"
+        },
+        {
+         "type": "WEB",
+         "url": "https://www.oracle.com//security-alerts/cpujul2021.html"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JS-LODASH-1018905"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JAVA-ORGWEBJARSNPM-1074893"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JAVA-ORGWEBJARSBOWERGITHUBLODASH-1074895"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JAVA-ORGWEBJARSBOWER-1074892"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JAVA-ORGWEBJARS-1074894"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JAVA-ORGFUJIONWEBJARS-1074896"
+        },
+        {
+         "type": "WEB",
+         "url": "https://security.netapp.com/advisory/ntap-20210312-0006"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/lodash-rails/CVE-2020-28500.yml"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/blob/npm/trimEnd.js%23L8"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/lodash/lodash"
+        },
+        {
+         "type": "WEB",
+         "url": "https://cert-portal.siemens.com/productcert/pdf/ssa-637483.pdf"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-1333",
+         "CWE-400"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2021-03-19T22:45:28Z",
+        "nvd_published_at": "2021-02-15T11:15:00Z",
+        "severity": "MODERATE"
+       }
+      },
+      {
+       "modified": "2026-09-10T03:49:04Z",
+       "published": "2021-05-06T16:05:51Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-35jh-r3h4-6jhm",
+       "aliases": [
+        "CVE-2021-23337",
+        "CVE-2026-4800",
+        "GHSA-r5fr-rjxr-66jc"
+       ],
+       "summary": "Command Injection in lodash",
+       "details": "`lodash` versions prior to 4.17.21 are vulnerable to Command Injection via the template function.",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash",
+          "purl": "pkg:npm/lodash"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "fixed": "4.17.21"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2021/05/GHSA-35jh-r3h4-6jhm/GHSA-35jh-r3h4-6jhm.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash-es",
+          "purl": "pkg:npm/lodash-es"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "fixed": "4.17.21"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2021/05/GHSA-35jh-r3h4-6jhm/GHSA-35jh-r3h4-6jhm.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash.template",
+          "purl": "pkg:npm/lodash.template"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "last_affected": "4.5.0"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2021/05/GHSA-35jh-r3h4-6jhm/GHSA-35jh-r3h4-6jhm.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash-template",
+          "purl": "pkg:npm/lodash-template"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "last_affected": "1.0.0"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2021/05/GHSA-35jh-r3h4-6jhm/GHSA-35jh-r3h4-6jhm.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "RubyGems",
+          "name": "lodash-rails",
+          "purl": "pkg:gem/lodash-rails"
+         },
+         "ranges": [
+          {
+           "type": "ECOSYSTEM",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "fixed": "4.17.21"
+            }
+           ]
+          }
+         ],
+         "versions": [
+          "0.10.0",
+          "0.7.0",
+          "0.8.1",
+          "0.8.2",
+          "0.9.0",
+          "0.9.1",
+          "0.9.2",
+          "1.0.0.rc.1",
+          "1.0.0.rc.2",
+          "1.0.0.rc.3",
+          "1.0.1",
+          "1.1.0",
+          "1.1.1",
+          "1.2.0",
+          "1.2.1",
+          "1.3.1",
+          "2.0.0",
+          "2.1.0",
+          "2.2.0",
+          "2.2.1",
+          "2.3.0",
+          "2.4.0",
+          "2.4.1",
+          "3.1.0",
+          "3.10.0",
+          "3.10.1",
+          "3.2.0",
+          "3.3.0",
+          "3.3.1",
+          "3.3.1.1",
+          "3.4.0",
+          "3.5.0",
+          "3.6.0",
+          "3.7.0",
+          "3.9.3",
+          "4.0.0",
+          "4.11.2",
+          "4.12.0",
+          "4.13.1",
+          "4.14.1",
+          "4.15.0",
+          "4.16.1",
+          "4.16.3",
+          "4.16.4",
+          "4.16.6",
+          "4.17.10",
+          "4.17.11",
+          "4.17.14",
+          "4.17.15",
+          "4.17.2",
+          "4.17.4",
+          "4.17.5",
+          "4.3.0",
+          "4.5.1",
+          "4.6.1"
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2021/05/GHSA-35jh-r3h4-6jhm/GHSA-35jh-r3h4-6jhm.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H"
+        }
+       ],
+       "references": [
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-23337"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/commit/3469357cff396a26c363f8c1b5a91dde28ba4b1c"
+        },
+        {
+         "type": "WEB",
+         "url": "https://www.oracle.com/security-alerts/cpuoct2021.html"
+        },
+        {
+         "type": "WEB",
+         "url": "https://www.oracle.com/security-alerts/cpujul2022.html"
+        },
+        {
+         "type": "WEB",
+         "url": "https://www.oracle.com/security-alerts/cpujan2022.html"
+        },
+        {
+         "type": "WEB",
+         "url": "https://www.oracle.com//security-alerts/cpujul2021.html"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JS-LODASH-1040724"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JAVA-ORGWEBJARSNPM-1074929"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JAVA-ORGWEBJARSBOWERGITHUBLODASH-1074931"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JAVA-ORGWEBJARSBOWER-1074928"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JAVA-ORGWEBJARS-1074930"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JAVA-ORGFUJIONWEBJARS-1074932"
+        },
+        {
+         "type": "WEB",
+         "url": "https://security.netapp.com/advisory/ntap-20210312-0006"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/lodash-rails/CVE-2021-23337.yml"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/blob/ddfd9b11a0126db2302cb70ec9973b66baec0975/lodash.js#L14851"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/lodash/lodash"
+        },
+        {
+         "type": "WEB",
+         "url": "https://cert-portal.siemens.com/productcert/pdf/ssa-637483.pdf"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-77",
+         "CWE-94"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2021-03-31T23:59:26Z",
+        "nvd_published_at": "2021-02-15T13:15:00Z",
+        "severity": "HIGH"
+       }
+      },
+      {
+       "modified": "2026-09-10T03:50:44Z",
+       "published": "2026-04-01T23:50:27Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-f23m-r3pf-42rh",
+       "aliases": [
+        "CVE-2025-13465",
+        "CVE-2026-2950",
+        "GHSA-xxjr-mmjv-4gpg"
+       ],
+       "summary": "lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`",
+       "details": "### Impact\n\nLodash versions 4.17.23 and earlier are vulnerable to prototype pollution in the `_.unset` and `_.omit` functions. The fix for [CVE-2025-13465](https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg) only guards against string key members, so an attacker can bypass the check by passing array-wrapped path segments. This allows deletion of properties from built-in prototypes such as `Object.prototype`, `Number.prototype`, and `String.prototype`.\n\nThe issue permits deletion of prototype properties but does not allow overwriting their original behavior.\n\n### Patches\n\nThis issue is patched in 4.18.0.\n\n### Workarounds\n\nNone. Upgrade to the patched version.",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash",
+          "purl": "pkg:npm/lodash"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "fixed": "4.18.0"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "last_known_affected_version_range": "<= 4.17.23",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/04/GHSA-f23m-r3pf-42rh/GHSA-f23m-r3pf-42rh.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash-es",
+          "purl": "pkg:npm/lodash-es"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "fixed": "4.18.0"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "last_known_affected_version_range": "<= 4.17.23",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/04/GHSA-f23m-r3pf-42rh/GHSA-f23m-r3pf-42rh.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash-amd",
+          "purl": "pkg:npm/lodash-amd"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "fixed": "4.18.0"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "last_known_affected_version_range": "<= 4.17.23",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/04/GHSA-f23m-r3pf-42rh/GHSA-f23m-r3pf-42rh.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash.unset",
+          "purl": "pkg:npm/lodash.unset"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "fixed": "4.18.0"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/04/GHSA-f23m-r3pf-42rh/GHSA-f23m-r3pf-42rh.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L"
+        }
+       ],
+       "references": [
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/security/advisories/GHSA-f23m-r3pf-42rh"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg"
+        },
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-2950"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/lodash/lodash"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-1321"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2026-04-01T23:50:27Z",
+        "nvd_published_at": "2026-03-31T20:16:26Z",
+        "severity": "MODERATE"
+       }
+      },
+      {
+       "modified": "2026-09-10T03:51:02Z",
+       "published": "2026-04-01T23:51:12Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-r5fr-rjxr-66jc",
+       "aliases": [
+        "CVE-2021-23337",
+        "CVE-2026-4800",
+        "GHSA-35jh-r3h4-6jhm"
+       ],
+       "summary": "lodash vulnerable to Code Injection via `_.template` imports key names",
+       "details": "### Impact\n\nThe fix for [CVE-2021-23337](https://github.com/advisories/GHSA-35jh-r3h4-6jhm) added validation for the `variable` option in `_.template` but did not apply the same validation to `options.imports` key names. Both paths flow into the same `Function()` constructor sink.\n\nWhen an application passes untrusted input as `options.imports` key names, an attacker can inject default-parameter expressions that execute arbitrary code at template compilation time.\n\nAdditionally, `_.template` uses `assignInWith` to merge imports, which enumerates inherited properties via `for..in`. If `Object.prototype` has been polluted by any other vector, the polluted keys are copied into the imports object and passed to `Function()`.\n\n### Patches\n\nUsers should upgrade to version 4.18.0.\n\nThe fix applies two changes:\n1. Validate `importsKeys` against the existing `reForbiddenIdentifierChars` regex (same check already used for the `variable` option)\n2. Replace `assignInWith` with `assignWith` when merging imports, so only own properties are enumerated\n\n### Workarounds\n\nDo not pass untrusted input as key names in `options.imports`. Only use developer-controlled, static key names.",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash",
+          "purl": "pkg:npm/lodash"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "fixed": "4.18.0"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "last_known_affected_version_range": "<= 4.17.23",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/04/GHSA-r5fr-rjxr-66jc/GHSA-r5fr-rjxr-66jc.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash-es",
+          "purl": "pkg:npm/lodash-es"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "fixed": "4.18.0"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "last_known_affected_version_range": "<= 4.17.23",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/04/GHSA-r5fr-rjxr-66jc/GHSA-r5fr-rjxr-66jc.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash-amd",
+          "purl": "pkg:npm/lodash-amd"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "fixed": "4.18.0"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "last_known_affected_version_range": "<= 4.17.23",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/04/GHSA-r5fr-rjxr-66jc/GHSA-r5fr-rjxr-66jc.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash.template",
+          "purl": "pkg:npm/lodash.template"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "fixed": "4.18.0"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/04/GHSA-r5fr-rjxr-66jc/GHSA-r5fr-rjxr-66jc.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        }
+       ],
+       "references": [
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/security/advisories/GHSA-r5fr-rjxr-66jc"
+        },
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-4800"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/commit/3469357cff396a26c363f8c1b5a91dde28ba4b1c"
+        },
+        {
+         "type": "WEB",
+         "url": "https://cna.openjsf.org/security-advisories.html"
+        },
+        {
+         "type": "ADVISORY",
+         "url": "https://github.com/advisories/GHSA-35jh-r3h4-6jhm"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/lodash/lodash"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-94"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2026-04-01T23:51:12Z",
+        "nvd_published_at": "2026-03-31T20:16:29Z",
+        "severity": "HIGH"
+       }
+      },
+      {
+       "modified": "2026-09-10T03:50:33Z",
+       "published": "2026-01-21T23:01:22Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-xxjr-mmjv-4gpg",
+       "aliases": [
+        "CVE-2025-13465",
+        "CVE-2026-2950",
+        "GHSA-f23m-r3pf-42rh"
+       ],
+       "summary": "Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions",
+       "details": "### Impact\n\nLodash versions 4.0.0 through 4.17.22 are vulnerable to prototype pollution in the `_.unset` and `_.omit` functions. An attacker can pass crafted paths which cause Lodash to delete methods from global prototypes. \n\nThe issue permits deletion of properties but does not allow overwriting their original behavior.  \n\n### Patches\n\nThis issue is patched on 4.17.23.",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash",
+          "purl": "pkg:npm/lodash"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "fixed": "4.17.23"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "last_known_affected_version_range": "<= 4.17.22",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/01/GHSA-xxjr-mmjv-4gpg/GHSA-xxjr-mmjv-4gpg.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash.unset",
+          "purl": "pkg:npm/lodash.unset"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "last_affected": "4.5.2"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/01/GHSA-xxjr-mmjv-4gpg/GHSA-xxjr-mmjv-4gpg.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash-es",
+          "purl": "pkg:npm/lodash-es"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "fixed": "4.17.23"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "last_known_affected_version_range": "<= 4.17.22",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/01/GHSA-xxjr-mmjv-4gpg/GHSA-xxjr-mmjv-4gpg.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "lodash-amd",
+          "purl": "pkg:npm/lodash-amd"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "4.0.0"
+            },
+            {
+             "fixed": "4.17.23"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "last_known_affected_version_range": "<= 4.17.22",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/01/GHSA-xxjr-mmjv-4gpg/GHSA-xxjr-mmjv-4gpg.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L"
+        },
+        {
+         "type": "CVSS_V4",
+         "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:L/SC:H/SI:H/SA:H/E:P"
+        }
+       ],
+       "references": [
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg"
+        },
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-13465"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/lodash/lodash/commit/edadd452146f7e4bad4ea684e955708931d84d81"
+        },
+        {
+         "type": "WEB",
+         "url": "https://cert-portal.siemens.com/productcert/html/ssa-253495.html"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/lodash/lodash"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-1321"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2026-01-21T23:01:22Z",
+        "nvd_published_at": "2026-01-21T20:16:05Z",
+        "severity": "MODERATE"
+       }
+      }
+     ],
+     "groups": [
+      {
+       "ids": [
+        "GHSA-29mw-wpgm-hmr9"
+       ],
+       "aliases": [
+        "CVE-2020-28500",
+        "GHSA-29mw-wpgm-hmr9"
+       ],
+       "max_severity": "5.3"
+      },
+      {
+       "ids": [
+        "GHSA-35jh-r3h4-6jhm",
+        "GHSA-r5fr-rjxr-66jc"
+       ],
+       "aliases": [
+        "CVE-2021-23337",
+        "CVE-2026-4800",
+        "GHSA-35jh-r3h4-6jhm",
+        "GHSA-r5fr-rjxr-66jc"
+       ],
+       "max_severity": "8.1"
+      },
+      {
+       "ids": [
+        "GHSA-f23m-r3pf-42rh",
+        "GHSA-xxjr-mmjv-4gpg"
+       ],
+       "aliases": [
+        "CVE-2025-13465",
+        "CVE-2026-2950",
+        "GHSA-f23m-r3pf-42rh",
+        "GHSA-xxjr-mmjv-4gpg"
+       ],
+       "max_severity": "6.9"
+      }
+     ]
+    },
+    {
+     "package": {
+      "name": "marked",
+      "version": "4.0.9",
+      "ecosystem": "npm"
+     },
+     "vulnerabilities": [
+      {
+       "modified": "2026-09-10T03:49:10Z",
+       "published": "2022-01-14T21:04:46Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-5v2h-r2cx-5xgj",
+       "aliases": [
+        "CVE-2022-21681"
+       ],
+       "summary": "Inefficient Regular Expression Complexity in marked",
+       "details": "### Impact\n\n_What kind of vulnerability is it?_\n\nDenial of service.\n\nThe regular expression `inline.reflinkSearch` may cause catastrophic backtracking against some strings.\nPoC is the following.\n\n```javascript\nimport * as marked from 'marked';\n\nconsole.log(marked.parse(`[x]: x\n\n\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](\\\\[\\\\](`));\n```\n\n_Who is impacted?_\n\nAnyone who runs untrusted markdown through marked and does not use a worker with a time limit.\n\n### Patches\n\n_Has the problem been patched?_\n\nYes\n\n_What versions should users upgrade to?_\n\n4.0.10\n\n### Workarounds\n\n_Is there a way for users to fix or remediate the vulnerability without upgrading?_\n\nDo not run untrusted markdown through marked or run marked on a [worker](https://marked.js.org/using_advanced#workers) thread and set a reasonable time limit to prevent draining resources.\n\n### References\n\n_Are there any links users can visit to find out more?_\n\n- https://marked.js.org/using_advanced#workers\n- https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue in [marked](https://github.com/markedjs/marked)\n",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "marked",
+          "purl": "pkg:npm/marked"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "fixed": "4.0.10"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/01/GHSA-5v2h-r2cx-5xgj/GHSA-5v2h-r2cx-5xgj.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+       ],
+       "references": [
+        {
+         "type": "WEB",
+         "url": "https://github.com/markedjs/marked/security/advisories/GHSA-5v2h-r2cx-5xgj"
+        },
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-21681"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/markedjs/marked/commit/8f806573a3f6c6b7a39b8cdb66ab5ebb8d55a5f5"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/markedjs/marked/commit/c4a3ccd344b6929afa8a1d50ac54a721e57012c0"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/markedjs/marked"
+        },
+        {
+         "type": "WEB",
+         "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/AIXDMC3CSHYW3YWVSQOXAWLUYQHAO5UX"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-1333"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2022-01-14T19:57:17Z",
+        "nvd_published_at": "2022-01-14T17:15:00Z",
+        "severity": "HIGH"
+       }
+      },
+      {
+       "modified": "2026-09-10T03:49:11Z",
+       "published": "2022-01-14T21:04:41Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-rrrm-qjm4-v8hf",
+       "aliases": [
+        "CVE-2022-21680"
+       ],
+       "summary": "Inefficient Regular Expression Complexity in marked",
+       "details": "### Impact\n\n_What kind of vulnerability is it?_\n\nDenial of service.\n\nThe regular expression `block.def` may cause catastrophic backtracking against some strings.\nPoC is the following.\n\n```javascript\nimport * as marked from \"marked\";\n\nmarked.parse(`[x]:${' '.repeat(1500)}x ${' '.repeat(1500)} x`);\n```\n\n_Who is impacted?_\n\nAnyone who runs untrusted markdown through marked and does not use a worker with a time limit.\n\n### Patches\n\n_Has the problem been patched?_\n\nYes\n\n_What versions should users upgrade to?_\n\n4.0.10\n\n### Workarounds\n\n_Is there a way for users to fix or remediate the vulnerability without upgrading?_\n\nDo not run untrusted markdown through marked or run marked on a [worker](https://marked.js.org/using_advanced#workers) thread and set a reasonable time limit to prevent draining resources.\n\n### References\n\n_Are there any links users can visit to find out more?_\n\n- https://marked.js.org/using_advanced#workers\n- https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue in [marked](https://github.com/markedjs/marked)\n",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "marked",
+          "purl": "pkg:npm/marked"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "fixed": "4.0.10"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/01/GHSA-rrrm-qjm4-v8hf/GHSA-rrrm-qjm4-v8hf.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+       ],
+       "references": [
+        {
+         "type": "WEB",
+         "url": "https://github.com/markedjs/marked/security/advisories/GHSA-rrrm-qjm4-v8hf"
+        },
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-21680"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/markedjs/marked/commit/c4a3ccd344b6929afa8a1d50ac54a721e57012c0"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/markedjs/marked"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/markedjs/marked/releases/tag/v4.0.10"
+        },
+        {
+         "type": "WEB",
+         "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/AIXDMC3CSHYW3YWVSQOXAWLUYQHAO5UX"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-1333",
+         "CWE-400"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2022-01-14T19:56:20Z",
+        "nvd_published_at": "2022-01-14T17:15:00Z",
+        "severity": "HIGH"
+       }
+      }
+     ],
+     "groups": [
+      {
+       "ids": [
+        "GHSA-5v2h-r2cx-5xgj"
+       ],
+       "aliases": [
+        "CVE-2022-21681",
+        "GHSA-5v2h-r2cx-5xgj"
+       ],
+       "max_severity": "7.5"
+      },
+      {
+       "ids": [
+        "GHSA-rrrm-qjm4-v8hf"
+       ],
+       "aliases": [
+        "CVE-2022-21680",
+        "GHSA-rrrm-qjm4-v8hf"
+       ],
+       "max_severity": "7.5"
+      }
+     ]
+    },
+    {
+     "package": {
+      "name": "minimist",
+      "version": "1.2.5",
+      "ecosystem": "npm"
+     },
+     "vulnerabilities": [
+      {
+       "modified": "2026-03-13T22:11:59Z",
+       "published": "2022-03-18T00:01:09Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-xvch-5gv4-984h",
+       "aliases": [
+        "CVE-2021-44906"
+       ],
+       "summary": "Prototype Pollution in minimist",
+       "details": "Minimist prior to 1.2.6 and 0.2.4 is vulnerable to Prototype Pollution via file `index.js`, function `setKey()` (lines 69-95).",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "minimist",
+          "purl": "pkg:npm/minimist"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "1.0.0"
+            },
+            {
+             "fixed": "1.2.6"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/03/GHSA-xvch-5gv4-984h/GHSA-xvch-5gv4-984h.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "minimist",
+          "purl": "pkg:npm/minimist"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "fixed": "0.2.4"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/03/GHSA-xvch-5gv4-984h/GHSA-xvch-5gv4-984h.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        }
+       ],
+       "references": [
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-44906"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/minimistjs/minimist/issues/11"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/substack/minimist/issues/164"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/minimistjs/minimist/pull/24"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/minimistjs/minimist/commit/34e20b8461118608703d6485326abbb8e35e1703"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/minimistjs/minimist/commit/bc8ecee43875261f4f17eb20b1243d3ed15e70eb"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/minimistjs/minimist/commit/c2b981977fa834b223b408cfb860f933c9811e4d"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/minimistjs/minimist/commit/ef9153fc52b6cea0744b2239921c5dcae4697f11"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/Marynk/JavaScript-vulnerability-detection/blob/main/minimist%20PoC.zip"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/minimistjs/minimist/commits/v0.2.4"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/substack/minimist"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/substack/minimist/blob/master/index.js#L69"
+        },
+        {
+         "type": "WEB",
+         "url": "https://security.netapp.com/advisory/ntap-20240621-0006"
+        },
+        {
+         "type": "WEB",
+         "url": "https://snyk.io/vuln/SNYK-JS-MINIMIST-559764"
+        },
+        {
+         "type": "WEB",
+         "url": "https://stackoverflow.com/questions/8588563/adding-custom-properties-to-a-function/20278068#20278068"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-1321"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2022-03-18T23:13:40Z",
+        "nvd_published_at": "2022-03-17T16:15:00Z",
+        "severity": "CRITICAL"
+       }
+      }
+     ],
+     "groups": [
+      {
+       "ids": [
+        "GHSA-xvch-5gv4-984h"
+       ],
+       "aliases": [
+        "CVE-2021-44906",
+        "GHSA-xvch-5gv4-984h"
+       ],
+       "max_severity": "9.8"
+      }
+     ]
+    },
+    {
+     "package": {
+      "name": "qs",
+      "version": "6.10.1",
+      "ecosystem": "npm"
+     },
+     "vulnerabilities": [
+      {
+       "modified": "2026-09-10T03:51:14Z",
+       "published": "2026-09-02T14:45:13Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-4mjr-xmp4-gh2g",
+       "aliases": [
+        "CVE-2026-82417"
+       ],
+       "summary": "qs: Denial of Service via Attacker Controlled isBuffer",
+       "details": "### Summary\n\n`qs.stringify()` calls `utils.isBuffer()` on every value it serializes, and `utils.isBuffer()` invokes `obj.constructor.isBuffer(obj)` without checking that it is callable. A value whose own `constructor.isBuffer` is a non-function makes `qs` call a non-callable and throw `TypeError`. Such a value is produced **by `qs.parse` itself** from an untrusted query string when `plainObjects: true` or `allowPrototypes: true` is set, so a pure-`qs` `parse` \u2192 `stringify` round-trip \u2014 no `JSON.parse` \u2014 turns an unauthenticated query string into an uncaught throw.\n\nAn attacker-controlled `parse` input reaches the host application's availability asset \u2014 via `qs`'s own recommended `plainObjects` mitigation \u2014 and triggers an uncaught exception during a `parse` \u2192 `stringify` round-trip.\n\n### Details\n`utils.isBuffer` runs at `lib/stringify.js:127` for every serialized value:\n\n```js\nif (isNonNullishPrimitive(obj) || utils.isBuffer(obj)) { ... }\n```\n\n`utils.isBuffer` (`lib/utils.js:327-333`) invokes `obj.constructor.isBuffer` without verifying it is callable:\n\n```js\nvar isBuffer = function isBuffer(obj) {\n    if (!obj || typeof obj !== 'object') { return false; }\n    return !!(obj.constructor && obj.constructor.isBuffer && obj.constructor.isBuffer(obj));\n};\n```\n\n`constructor` and `isBuffer` are ordinary keys. `qs.parse` with `plainObjects: true` or `allowPrototypes: true` keeps them as own properties, so the parsed value carries a non-function `constructor.isBuffer`; `stringify` then calls a non-callable and throws `TypeError`. By contrast `utils.isRegExp` uses a brand check (`Object.prototype.toString`); the missing guard here is an internal inconsistency, not a platform limitation.\n\n\n### Trust Boundary Note\n\n`qs.stringify` alone treats its input as caller-constructed, so serializing a hostile object could be argued outside its contract. This report does not depend on that framing: the malicious shape is produced by **`qs.parse`, whose input is untrusted by design**. `qs.parse` normally strips a `constructor` key via its prototype guard, but with the documented options `plainObjects: true` or `allowPrototypes: true` the key survives and lands as an own property. Feeding the parsed object back into `qs.stringify` \u2014 the standard round-trip in gateways and request-forwarders \u2014 then hits the unchecked call. \n\n\n### PoC\n`poc02c_isBuffer_qs_only_roundtrip.js` \u2014 pure-`qs` chain, no `JSON.parse`; an untrusted query string alone reaches the throw:\n\n```js\n'use strict';\nvar qs = require('qs');\n\nvar untrustedQueryString = 'x%5Bconstructor%5D%5BisBuffer%5D=y'; // x[constructor][isBuffer]=y\n\nvar parsed = qs.parse(untrustedQueryString, { plainObjects: true });\nconsole.log('[parse] kept constructor key:', JSON.stringify(parsed));\n\ntry {\n    qs.stringify(parsed);\n    console.log('[stringify] no throw (unexpected)');\n} catch (e) {\n    console.log('[stringify] DoS reproduced ->', e.constructor.name + ':', e.message);\n}\n```\n\n`poc02_isBuffer.js` \u2014 the minimal defect:\n\n```js\n'use strict';\nvar qs = require('qs');\ntry {\n    qs.stringify(JSON.parse('{\"a\":{\"constructor\":{\"isBuffer\":\"x\"}}}'));\n} catch (e) {\n    console.log('[A] DoS reproduced ->', e.constructor.name + ':', e.message);\n}\n```\n\n`poc02b_isBuffer_async_crash.js` \u2014 worker death in an async sink:\n\n```js\n'use strict';\nvar qs = require('qs');\n\nfunction handleRequestAsync(clientJsonBody) {\n    try {\n        setImmediate(function () {                 // async continuation, outside the try\n            qs.stringify(JSON.parse(clientJsonBody)); // throws here, uncaught\n        });\n        console.log('[handler] returned 200 synchronously; async work scheduled');\n    } catch (e) {\n        console.log('[handler] caught synchronously (will NOT happen):', e.message);\n    }\n}\nprocess.on('exit', function (code) {\n    console.log('[proc] process exiting with code:', code);\n});\nhandleRequestAsync('{\"filters\":{\"constructor\":{\"isBuffer\":\"x\"}}}');\n```\n\n### Execution Steps\n\n```bash\ncd poc\nnpm install qs@6.15.3\nnode poc02c_isBuffer_qs_only_roundtrip.js  # pure qs parse->stringify -> TypeError\nnode poc02_isBuffer.js                      # minimal defect -> TypeError inside stringify\nnode poc02b_isBuffer_async_crash.js         # async sink -> uncaught throw -> exit code 1\n```\n\n### Reproduction Evidence\n\n`poc02c_isBuffer_qs_only_roundtrip.js` :\n\n```\n[parse] kept constructor key: {\"x\":{\"constructor\":{\"isBuffer\":\"y\"}}}\n[stringify] DoS reproduced -> TypeError: obj.constructor.isBuffer is not a function\n```\n\n`poc02_isBuffer.js`:\n\n```\n[A] DoS reproduced -> TypeError: obj.constructor.isBuffer is not a function\n```\n\n`poc02b_isBuffer_async_crash.js` :\n\n```\n[handler] returned 200 synchronously; async work scheduled\n[proc] process exiting with code: 1\nTypeError: obj.constructor.isBuffer is not a function\n    at Object.isBuffer (.../qs/lib/utils.js:332:78)\n    at stringify (.../qs/lib/stringify.js:127:45)\n=== EXIT CODE: 1 ===\n```\n\nThe pure-`qs` round-trip shows the malicious shape originates from `qs.parse` of an untrusted query string, with no `JSON.parse`. The synchronous `try/catch` in the async case does not catch the throw; the process exits with code 1, denying service to all requests on that worker.\n\n### Impact\n\nAn unauthenticated request degrades any endpoint that re-serializes deserialized client data with `qs.stringify`. The primary impact is a per-request failure: the handler throws and the framework returns HTTP 500. Where the call sits in an unguarded async continuation, the throw escapes and the worker process exits, denying service to all requests it was handling, which means a higher impact that depends on the application's error handling, not on `qs`.\n\n### Recommended Fix\n\nReplace the duck-type with a brand check mirroring `utils.isRegExp`:\n\n```js\nvar isBuffer = function isBuffer(obj) {\n    if (!obj || typeof obj !== 'object') { return false; }\n    if (typeof Buffer !== 'undefined' && typeof Buffer.isBuffer === 'function') {\n        return Buffer.isBuffer(obj);\n    }\n    return Object.prototype.toString.call(obj) === '[object Uint8Array]';\n};\n```\n\nIf duck-typing must remain, require `typeof obj.constructor.isBuffer === 'function'` before invoking and wrap the call in `try/catch`.",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "2.2.5"
+            },
+            {
+             "fixed": "6.16.0"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-4mjr-xmp4-gh2g/GHSA-4mjr-xmp4-gh2g.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        },
+        {
+         "type": "CVSS_V4",
+         "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"
+        }
+       ],
+       "references": [
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/security/advisories/GHSA-4mjr-xmp4-gh2g"
+        },
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-82417"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/e83d321ffafb38cf210683ac31714fce6ce1c6c6"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/ljharb/qs"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-248",
+         "CWE-703"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2026-09-02T14:45:13Z",
+        "nvd_published_at": "2026-08-30T00:16:34Z",
+        "severity": "MODERATE"
+       }
+      },
+      {
+       "modified": "2026-09-10T03:50:31Z",
+       "published": "2025-12-30T21:02:54Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-6rw7-vpxm-498p",
+       "aliases": [
+        "CVE-2025-15284"
+       ],
+       "summary": "qs's arrayLimit bypass in its bracket notation allows DoS via memory exhaustion",
+       "details": "### Summary\n\nThe `arrayLimit` option in qs did not enforce limits for bracket notation (`a[]=1&a[]=2`), only for indexed notation (`a[0]=1`). This is a consistency bug; `arrayLimit` should apply uniformly across all array notations.\n\n**Note:** The default `parameterLimit` of 1000 effectively mitigates the DoS scenario originally described. With default options, bracket notation cannot produce arrays larger than `parameterLimit` regardless of `arrayLimit`, because each `a[]=value` consumes one parameter slot. The severity has been reduced accordingly.\n\n### Details\n\nThe `arrayLimit` option only checked limits for indexed notation (`a[0]=1&a[1]=2`) but did not enforce it for bracket notation (`a[]=1&a[]=2`).\n\n**Vulnerable code** (`lib/parse.js:159-162`):\n```javascript\nif (root === '[]' && options.parseArrays) {\n    obj = utils.combine([], leaf);  // No arrayLimit check\n}\n```\n\n**Working code** (`lib/parse.js:175`):\n```javascript\nelse if (index <= options.arrayLimit) {  // Limit checked here\n    obj = [];\n    obj[index] = leaf;\n}\n```\n\nThe bracket notation handler at line 159 uses `utils.combine([], leaf)` without validating against `options.arrayLimit`, while indexed notation at line 175 checks `index <= options.arrayLimit` before creating arrays.\n\n### PoC\n\n```javascript\nconst qs = require('qs');\nconst result = qs.parse('a[]=1&a[]=2&a[]=3&a[]=4&a[]=5&a[]=6', { arrayLimit: 5 });\nconsole.log(result.a.length);  // Output: 6 (should be max 5)\n```\n\n**Note on parameterLimit interaction:** The original advisory's \"DoS demonstration\" claimed a length of 10,000, but `parameterLimit` (default: 1000) caps parsing to 1,000 parameters. With default options, the actual output is 1,000, not 10,000.\n\n### Impact\n\nConsistency bug in `arrayLimit` enforcement. With default `parameterLimit`, the practical DoS risk is negligible since `parameterLimit` already caps the total number of parsed parameters (and thus array elements from bracket notation). The risk increases only when `parameterLimit` is explicitly set to a very high value.",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "fixed": "6.14.1"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2025/12/GHSA-6rw7-vpxm-498p/GHSA-6rw7-vpxm-498p.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        },
+        {
+         "type": "CVSS_V4",
+         "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:L"
+        }
+       ],
+       "references": [
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/security/advisories/GHSA-6rw7-vpxm-498p"
+        },
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-15284"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/3086902ecf7f088d0d1803887643ac6c03d415b9"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/ljharb/qs"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-20"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2025-12-30T21:02:54Z",
+        "nvd_published_at": "2025-12-29T23:15:42Z",
+        "severity": "MODERATE"
+       }
+      },
+      {
+       "modified": "2025-04-29T15:41:43Z",
+       "published": "2022-11-27T00:30:50Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-hrpp-h998-j3pp",
+       "aliases": [
+        "CVE-2022-24999"
+       ],
+       "summary": "qs vulnerable to Prototype Pollution",
+       "details": "qs before 6.10.3 allows attackers to cause a Node process hang because an `__ proto__` key can be used. In many typical web framework use cases, an unauthenticated remote attacker can place the attack payload in the query string of the URL that is used to visit the application, such as `a[__proto__]=b&a[__proto__]&a[length]=100000000`. The fix was backported to qs 6.9.7, 6.8.3, 6.7.3, 6.6.1, 6.5.3, 6.4.1, 6.3.3, and 6.2.4.",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "6.10.0"
+            },
+            {
+             "fixed": "6.10.3"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/11/GHSA-hrpp-h998-j3pp/GHSA-hrpp-h998-j3pp.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "6.9.0"
+            },
+            {
+             "fixed": "6.9.7"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/11/GHSA-hrpp-h998-j3pp/GHSA-hrpp-h998-j3pp.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "6.8.0"
+            },
+            {
+             "fixed": "6.8.3"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/11/GHSA-hrpp-h998-j3pp/GHSA-hrpp-h998-j3pp.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "6.7.0"
+            },
+            {
+             "fixed": "6.7.3"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/11/GHSA-hrpp-h998-j3pp/GHSA-hrpp-h998-j3pp.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "6.6.0"
+            },
+            {
+             "fixed": "6.6.1"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/11/GHSA-hrpp-h998-j3pp/GHSA-hrpp-h998-j3pp.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "6.5.0"
+            },
+            {
+             "fixed": "6.5.3"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/11/GHSA-hrpp-h998-j3pp/GHSA-hrpp-h998-j3pp.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "6.4.0"
+            },
+            {
+             "fixed": "6.4.1"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/11/GHSA-hrpp-h998-j3pp/GHSA-hrpp-h998-j3pp.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "6.3.0"
+            },
+            {
+             "fixed": "6.3.3"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/11/GHSA-hrpp-h998-j3pp/GHSA-hrpp-h998-j3pp.json"
+         }
+        },
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "0"
+            },
+            {
+             "fixed": "6.2.4"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/11/GHSA-hrpp-h998-j3pp/GHSA-hrpp-h998-j3pp.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+       ],
+       "references": [
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-24999"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/pull/428"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/4310742efbd8c03f6495f07906b45213da0a32ec"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/727ef5d34605108acb3513f72d5435972ed15b68"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/73205259936317b40f447c5cdb71c5b341848e1b"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/8b4cc14cda94a5c89341b77e5fe435ec6c41be2d"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/ba24e74dd17931f825adb52f5633e48293b584e1"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/e799ba57e573a30c14b67c1889c7c04d508b9105"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/ed0f5dcbef4b168a8ae299d78b1e4a2e9b1baf1f"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/f945393cfe442fe8c6e62b4156fd35452c0686ee"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/fc3682776670524a42e19709ec4a8138d0d7afda"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/expressjs/express/releases/tag/4.17.3"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/ljharb/qs"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/n8tz/CVE-2022-24999"
+        },
+        {
+         "type": "WEB",
+         "url": "https://lists.debian.org/debian-lts-announce/2023/01/msg00039.html"
+        },
+        {
+         "type": "WEB",
+         "url": "https://security.netapp.com/advisory/ntap-20230908-0005"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-1321"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2022-12-06T14:32:46Z",
+        "nvd_published_at": "2022-11-26T22:15:00Z",
+        "severity": "HIGH"
+       }
+      },
+      {
+       "modified": "2026-09-10T03:50:35Z",
+       "published": "2026-02-12T17:04:39Z",
+       "schema_version": "1.9.0",
+       "id": "GHSA-w7fw-mjwx-w883",
+       "aliases": [
+        "CVE-2026-2391"
+       ],
+       "related": [
+        "CVE-2026-82562"
+       ],
+       "summary": "qs's arrayLimit bypass in comma parsing allows denial of service",
+       "details": "### Summary\nThe `arrayLimit` option in qs does not enforce limits for comma-separated values when `comma: true` is enabled, allowing attackers to cause denial-of-service via memory exhaustion. This is a bypass of the array limit enforcement, similar to the bracket notation bypass addressed in GHSA-6rw7-vpxm-498p (CVE-2025-15284).\n\n### Details\nWhen the `comma` option is set to `true` (not the default, but configurable in applications), qs allows parsing comma-separated strings as arrays (e.g., `?param=a,b,c` becomes `['a', 'b', 'c']`). However, the limit check for `arrayLimit` (default: 20) and the optional throwOnLimitExceeded occur after the comma-handling logic in `parseArrayValue`, enabling a bypass. This permits creation of arbitrarily large arrays from a single parameter, leading to excessive memory allocation.\n\n**Vulnerable code** (lib/parse.js: lines ~40-50):\n```js\nif (val && typeof val === 'string' && options.comma && val.indexOf(',') > -1) {\n    return val.split(',');\n}\n\nif (options.throwOnLimitExceeded && currentArrayLength >= options.arrayLimit) {\n    throw new RangeError('Array limit exceeded. Only ' + options.arrayLimit + ' element' + (options.arrayLimit === 1 ? '' : 's') + ' allowed in an array.');\n}\n\nreturn val;\n```\nThe `split(',')` returns the array immediately, skipping the subsequent limit check. Downstream merging via `utils.combine` does not prevent allocation, even if it marks overflows for sparse arrays.This discrepancy allows attackers to send a single parameter with millions of commas (e.g., `?param=,,,,,,,,...`), allocating massive arrays in memory without triggering limits. It bypasses the intent of `arrayLimit`, which is enforced correctly for indexed (`a[0]=`) and bracket (`a[]=`) notations (the latter fixed in v6.14.1 per GHSA-6rw7-vpxm-498p).\n\n### PoC\n**Test 1 - Basic bypass:**\n```\nnpm install qs\n```\n\n```js\nconst qs = require('qs');\n\nconst payload = 'a=' + ','.repeat(25);  // 26 elements after split (bypasses arrayLimit: 5)\nconst options = { comma: true, arrayLimit: 5, throwOnLimitExceeded: true };\n\ntry {\n  const result = qs.parse(payload, options);\n  console.log(result.a.length);  // Outputs: 26 (bypass successful)\n} catch (e) {\n  console.log('Limit enforced:', e.message);  // Not thrown\n}\n```\n**Configuration:**\n- `comma: true`\n- `arrayLimit: 5`\n- `throwOnLimitExceeded: true`\n\nExpected: Throws \"Array limit exceeded\" error.\nActual: Parses successfully, creating an array of length 26.\n\n\n### Impact\nDenial of Service (DoS) via memory exhaustion.\n\n### Suggested Fix\nMove the `arrayLimit` check before the comma split in `parseArrayValue`, and enforce it on the resulting array length. Use `currentArrayLength` (already calculated upstream) for consistency with bracket notation fixes.\n\n**Current code** (lib/parse.js: lines ~40-50):\n```js\nif (val && typeof val === 'string' && options.comma && val.indexOf(',') > -1) {\n    return val.split(',');\n}\n\nif (options.throwOnLimitExceeded && currentArrayLength >= options.arrayLimit) {\n    throw new RangeError('Array limit exceeded. Only ' + options.arrayLimit + ' element' + (options.arrayLimit === 1 ? '' : 's') + ' allowed in an array.');\n}\n\nreturn val;\n```\n\n**Fixed code:**\n```js\nif (val && typeof val === 'string' && options.comma && val.indexOf(',') > -1) {\n    const splitArray = val.split(',');\n    if (splitArray.length > options.arrayLimit - currentArrayLength) {  // Check against remaining limit\n        if (options.throwOnLimitExceeded) {\n            throw new RangeError('Array limit exceeded. Only ' + options.arrayLimit + ' element' + (options.arrayLimit === 1 ? '' : 's') + ' allowed in an array.');\n        } else {\n            // Optionally convert to object or truncate, per README\n            return splitArray.slice(0, options.arrayLimit - currentArrayLength);\n        }\n    }\n    return splitArray;\n}\n\nif (options.throwOnLimitExceeded && currentArrayLength >= options.arrayLimit) {\n    throw new RangeError('Array limit exceeded. Only ' + options.arrayLimit + ' element' + (options.arrayLimit === 1 ? '' : 's') + ' allowed in an array.');\n}\n\nreturn val;\n```\nThis aligns behavior with indexed and bracket notations, reuses `currentArrayLength`, and respects `throwOnLimitExceeded`. Update README to note the consistent enforcement.",
+       "affected": [
+        {
+         "package": {
+          "ecosystem": "npm",
+          "name": "qs",
+          "purl": "pkg:npm/qs"
+         },
+         "ranges": [
+          {
+           "type": "SEMVER",
+           "events": [
+            {
+             "introduced": "6.7.0"
+            },
+            {
+             "fixed": "6.14.2"
+            }
+           ]
+          }
+         ],
+         "database_specific": {
+          "last_known_affected_version_range": "<= 6.14.1",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/02/GHSA-w7fw-mjwx-w883/GHSA-w7fw-mjwx-w883.json"
+         }
+        }
+       ],
+       "severity": [
+        {
+         "type": "CVSS_V3",
+         "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        }
+       ],
+       "references": [
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/security/advisories/GHSA-w7fw-mjwx-w883"
+        },
+        {
+         "type": "ADVISORY",
+         "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-2391"
+        },
+        {
+         "type": "WEB",
+         "url": "https://github.com/ljharb/qs/commit/f6a7abff1f13d644db9b05fe4f2c98ada6bf8482"
+        },
+        {
+         "type": "PACKAGE",
+         "url": "https://github.com/ljharb/qs"
+        }
+       ],
+       "database_specific": {
+        "cwe_ids": [
+         "CWE-20"
+        ],
+        "github_reviewed": true,
+        "github_reviewed_at": "2026-02-12T17:04:39Z",
+        "nvd_published_at": "2026-02-12T05:17:11Z",
+        "severity": "LOW"
+       }
+      }
+     ],
+     "groups": [
+      {
+       "ids": [
+        "GHSA-4mjr-xmp4-gh2g"
+       ],
+       "aliases": [
+        "CVE-2026-82417",
+        "GHSA-4mjr-xmp4-gh2g"
+       ],
+       "max_severity": "6.3"
+      },
+      {
+       "ids": [
+        "GHSA-6rw7-vpxm-498p"
+       ],
+       "aliases": [
+        "CVE-2025-15284",
+        "GHSA-6rw7-vpxm-498p"
+       ],
+       "max_severity": "6.3"
+      },
+      {
+       "ids": [
+        "GHSA-hrpp-h998-j3pp"
+       ],
+       "aliases": [
+        "CVE-2022-24999",
+        "GHSA-hrpp-h998-j3pp"
+       ],
+       "max_severity": "7.5"
+      },
+      {
+       "ids": [
+        "GHSA-w7fw-mjwx-w883"
+       ],
+       "aliases": [
+        "CVE-2026-2391",
+        "GHSA-w7fw-mjwx-w883"
+       ],
+       "max_severity": "3.7"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "experimental_config": {
+  "licenses": {
+   "summary": false,
+   "allowlist": null
+  }
+ }
+}
